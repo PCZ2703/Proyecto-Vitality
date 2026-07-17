@@ -18,6 +18,11 @@ mongoose.connect(process.env.MONGO_URI)
     });
 
 app.use('/api/productos', require('./routes/ProductoRoutes'));
+app.use('/api/productos', require('./routes/ProductoRoutes'));
+app.use('/api/usuarios', require('./routes/UsuarioRoutes'));
+app.use('/api/checkins', require('./routes/CheckinRoutes'));
+app.use('/api/suscripciones', require('./routes/SuscripcionRoutes'));
+app.use('/api/terapeutas', require('./routes/TerapeutaRoutes'));
 
 const PORT = process.env.PORT;
 
