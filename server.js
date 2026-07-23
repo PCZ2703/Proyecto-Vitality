@@ -23,6 +23,13 @@ app.use('/api/usuarios', require('./routes/UsuarioRoutes'));
 app.use('/api/checkins', require('./routes/CheckinRoutes'));
 app.use('/api/suscripciones', require('./routes/SuscripcionRoutes'));
 app.use('/api/terapeutas', require('./routes/TerapeutaRoutes'));
+app.use('/api/cajas-mensuales', require('./routes/CajaMensualRoutes'));
+app.use('/api/sesiones', require('./routes/SesionRoutes'));
+app.use('/api/pagos', require('./routes/PagoRoutes'));
+app.use('/api/soporte-tickets', require('./routes/SoporteTicketRoutes'));
+app.use('/api/calificaciones', require('./routes/CalificacionRoutes'));
+app.use('/api/envios-logistica', require('./routes/EnvioLogisticaRoutes'));
+app.use('/api/notificaciones', require('./routes/NotificacionRoutes'));
 
 const PORT = process.env.PORT;
 
