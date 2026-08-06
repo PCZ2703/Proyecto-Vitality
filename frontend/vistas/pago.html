@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vitalia Connect - Pagos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/estilos.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#4A7C59;">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" href="../index.html">Vitalia Connect</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="checkin.html">Checkins</a></li>
+                    <li class="nav-item"><a class="nav-link" href="cajaMensual.html">Cajas Mensuales</a></li>
+                    <li class="nav-item"><a class="nav-link" href="calificacion.html">Calificaciones</a></li>
+                    <li class="nav-item"><a class="nav-link" href="producto.html">Productos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="sesion.html">Sesiones</a></li>
+                    <li class="nav-item"><a class="nav-link" href="soporteTicket.html">Soporte</a></li>
+                    <li class="nav-item"><a class="nav-link" href="envioLogistica.html">Envios</a></li>
+                    <li class="nav-item"><a class="nav-link" href="notificacion.html">Notificaciones</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="pago.html">Pagos</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2 class="fw-bold" style="color:#2C3E2D;">Pagos</h2>
+            <button type="button" class="btn btn-success rounded-3" data-bs-toggle="modal" data-bs-target="#modalPago">
+                + Nuevo Pago
+            </button>
+        </div>
+
+        <div id="alertaPago"></div>
+
+        <div class="table-responsive shadow-sm rounded-3">
+            <table class="table table-hover align-middle bg-white">
+                <thead style="background-color:#A3C9A8;">
+                    <tr>
+                        <th>Usuario</th>
+                        <th>Monto</th>
+                        <th>Metodo de Pago</th>
+                        <th>Estado</th>
+                        <th>Fecha</th>
+                        <th>Referencia Suscripcion</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaPago"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalPago" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content rounded-3">
+                <form id="formPago">
+                    <div class="modal-header" style="background-color:#4A7C59;">
+                        <h5 class="modal-title text-white" id="tituloModalPago">Nuevo Pago</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" id="pagoId">
+                        <div class="mb-3">
+                            <label class="form-label">Usuario</label>
+                            <input type="text" class="form-control" id="pagoUsuario" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Monto</label>
+                            <input type="number" min="0" step="0.01" class="form-control" id="pagoMonto" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Metodo de Pago</label>
+                            <input type="text" class="form-control" id="pagoMetodoPago" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Estado</label>
+                            <select class="form-select" id="pagoEstado" required>
+                                <option value="">Seleccione...</option>
+                                <option value="Completado">Completado</option>
+                                <option value="Pendiente">Pendiente</option>
+                                <option value="Rechazado">Rechazado</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Referencia Suscripcion</label>
+                            <input type="text" class="form-control" id="pagoReferenciaSuscripcion" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-success">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/modelos/PagoModel.js"></script>
+    <script src="../js/pago.js"></script>
+</body>
+</html>
