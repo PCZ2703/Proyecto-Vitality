@@ -14,7 +14,6 @@ $(document).ready(function () {
     });
 });
 
-// ===== LISTAR (GET) =====
 function consultarCajasMensuales() {
     $.ajax({
         url: config.apiCajaMensual,
@@ -30,14 +29,12 @@ function consultarCajasMensuales() {
     });
 }
 
-// ===== DIBUJAR TABLA =====
 function dibujarTablaCajaMensual(cajas) {
     const tabla = $("#tablaCajaMensual");
     tabla.html("");
 
     cajas.forEach(function (cajaElemento) {
         const productosTexto = cajaElemento.productosIncluidos.join(", ");
-        // Se pasa el array como JSON string escapado para poder reconstruirlo en el onclick
         const productosParaOnclick = JSON.stringify(cajaElemento.productosIncluidos).replace(/"/g, "&quot;");
 
         const fila = `
@@ -55,13 +52,11 @@ function dibujarTablaCajaMensual(cajas) {
     });
 }
 
-// ===== CREAR (POST) =====
 function crearCajaMensual() {
     const usuario = $("#cajaMensualUsuario").val();
     const mes = $("#cajaMensualMes").val();
     const productosTexto = $("#cajaMensualProductos").val();
 
-    // Convertimos el texto separado por comas en un array, limpiando espacios extra
     const productosIncluidos = productosTexto.split(",").map(function (producto) {
         return producto.trim();
     });
@@ -86,7 +81,6 @@ function crearCajaMensual() {
     });
 }
 
-// ===== CARGAR DATOS PARA EDITAR =====
 function cargarActualizarCajaMensual(id, usuario, mes, productosIncluidos) {
     $("#tituloModalCajaMensual").text("Editar Caja Mensual");
     $("#cajaMensualId").val(id);
@@ -98,7 +92,6 @@ function cargarActualizarCajaMensual(id, usuario, mes, productosIncluidos) {
     modal.show();
 }
 
-// ===== ACTUALIZAR (PUT) =====
 function actualizarCajaMensual(id) {
     const usuario = $("#cajaMensualUsuario").val();
     const mes = $("#cajaMensualMes").val();
@@ -128,7 +121,6 @@ function actualizarCajaMensual(id) {
     });
 }
 
-// ===== ELIMINAR (DELETE) =====
 function eliminarCajaMensual(id) {
     if (!confirm("¿Seguro que desea eliminar esta caja mensual?")) {
         return;
@@ -148,7 +140,6 @@ function eliminarCajaMensual(id) {
     });
 }
 
-// ===== UTILIDADES =====
 function limpiarFormularioCajaMensual() {
     $("#formCajaMensual")[0].reset();
     $("#cajaMensualId").val("");

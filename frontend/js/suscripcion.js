@@ -1,10 +1,4 @@
-/* ==========================================================================
-   Vitalia Connect — Módulo Suscripción
-   CRUD completo contra config.apiSuscripcion usando jQuery AJAX.
-   ========================================================================== */
 
-// Guarda temporalmente el historial de cambios del registro que se está
-// editando, para poder agregarle una nueva entrada sin perder las viejas.
 let historialActual = [];
 
 $(document).ready(function () {
@@ -20,7 +14,6 @@ $(document).ready(function () {
         actualizarSuscripcion();
     });
 
-    // Limpia el formulario de creación cada vez que se abre el modal
     $('#modalCrearSuscripcion').on('show.bs.modal', function () {
         $('#formCrearSuscripcion')[0].reset();
     });
@@ -30,7 +23,6 @@ $(document).ready(function () {
     });
 });
 
-// ---------- LEER / LISTAR ----------
 function cargarSuscripciones() {
     $('#tablaSuscripcion tbody').html(
         '<tr class="fila-vacia"><td colspan="6">Cargando suscripciones...</td></tr>'
@@ -88,7 +80,6 @@ function renderizarTablaSuscripcion(suscripciones) {
     });
 }
 
-// ---------- CREAR ----------
 function crearSuscripcion() {
     const nuevaSuscripcion = {
         usuario: $('#crearUsuario').val().trim(),
@@ -119,7 +110,6 @@ function crearSuscripcion() {
         });
 }
 
-// ---------- ABRIR MODAL EDITAR (carga los datos actuales) ----------
 function abrirEditarSuscripcion(id) {
     $.ajax({
         url: `${config.apiSuscripcion}/${id}`,
@@ -142,7 +132,6 @@ function abrirEditarSuscripcion(id) {
         });
 }
 
-// ---------- ACTUALIZAR ----------
 function actualizarSuscripcion() {
     const id = $('#editarId').val();
     const estadoNuevo = $('#editarEstado').val();
@@ -182,7 +171,6 @@ function actualizarSuscripcion() {
         });
 }
 
-// ---------- ELIMINAR ----------
 let idAEliminar = null;
 
 function abrirConfirmarEliminarSuscripcion(id, usuario) {
@@ -215,7 +203,6 @@ function eliminarSuscripcion() {
         });
 }
 
-// ---------- Utilidades ----------
 function obtenerBadgeEstado(estado) {
     const clases = {
         'Activa': 'badge-activa',
@@ -242,7 +229,6 @@ function obtenerMensajeError(xhr, mensajePorDefecto) {
     return mensajePorDefecto;
 }
 
-// Alertas de Bootstrap (nunca alert() nativo)
 function mostrarAlerta(mensaje, tipo) {
     const id = 'alerta-' + Date.now();
     const html = `

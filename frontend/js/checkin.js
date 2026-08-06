@@ -1,7 +1,6 @@
 $(document).ready(function () {
     consultarCheckins();
 
-    // Manejo del submit del formulario (sirve tanto para crear como editar)
     $("#formCheckin").on("submit", function (evento) {
         evento.preventDefault();
 
@@ -15,7 +14,6 @@ $(document).ready(function () {
     });
 });
 
-// ===== LISTAR (GET) =====
 function consultarCheckins() {
     $.ajax({
         url: config.apiCheckin,
@@ -31,7 +29,6 @@ function consultarCheckins() {
     });
 }
 
-// ===== DIBUJAR TABLA =====
 function dibujarTablaCheckin(checkins) {
     const tabla = $("#tablaCheckin");
     tabla.html("");
@@ -57,7 +54,6 @@ function dibujarTablaCheckin(checkins) {
     });
 }
 
-// ===== CREAR (POST) =====
 function crearCheckin() {
     const usuario = $("#checkinUsuario").val();
     const nivelEnergia = $("#checkinEnergia").val();
@@ -85,7 +81,6 @@ function crearCheckin() {
     });
 }
 
-// ===== CARGAR DATOS PARA EDITAR =====
 function cargarActualizarCheckin(id, usuario, energia, sueno, digestion, animo) {
     $("#tituloModalCheckin").text("Editar Checkin");
     $("#checkinId").val(id);
@@ -99,7 +94,6 @@ function cargarActualizarCheckin(id, usuario, energia, sueno, digestion, animo) 
     modal.show();
 }
 
-// ===== ACTUALIZAR (PUT) =====
 function actualizarCheckin(id) {
     const usuario = $("#checkinUsuario").val();
     const nivelEnergia = $("#checkinEnergia").val();
@@ -127,7 +121,6 @@ function actualizarCheckin(id) {
     });
 }
 
-// ===== ELIMINAR (DELETE) =====
 function eliminarCheckin(id) {
     if (!confirm("¿Seguro que desea eliminar este checkin?")) {
         return;
@@ -147,7 +140,6 @@ function eliminarCheckin(id) {
     });
 }
 
-// ===== UTILIDADES =====
 function limpiarFormularioCheckin() {
     $("#formCheckin")[0].reset();
     $("#checkinId").val("");

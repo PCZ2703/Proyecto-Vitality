@@ -14,7 +14,6 @@ $(document).ready(function () {
     });
 });
 
-// ===== LISTAR (GET) =====
 function consultarCalificaciones() {
     $.ajax({
         url: config.apiCalificacion,
@@ -30,14 +29,12 @@ function consultarCalificaciones() {
     });
 }
 
-// ===== DIBUJAR TABLA =====
 function dibujarTablaCalificacion(calificaciones) {
     const tabla = $("#tablaCalificacion");
     tabla.html("");
 
     calificaciones.forEach(function (calificacionElemento) {
         const resenaTexto = calificacionElemento.resena ? calificacionElemento.resena : "";
-        // Escapamos comillas dobles en la resena para que no rompa el onclick
         const resenaEscapada = resenaTexto.replace(/"/g, "&quot;");
 
         const fila = `
@@ -57,7 +54,6 @@ function dibujarTablaCalificacion(calificaciones) {
     });
 }
 
-// ===== CREAR (POST) =====
 function crearCalificacion() {
     const usuario = $("#calificacionUsuario").val();
     const tipo = $("#calificacionTipo").val();
@@ -85,7 +81,6 @@ function crearCalificacion() {
     });
 }
 
-// ===== CARGAR DATOS PARA EDITAR =====
 function cargarActualizarCalificacion(id, usuario, tipo, referencia, puntuacion, resena) {
     $("#tituloModalCalificacion").text("Editar Calificacion");
     $("#calificacionId").val(id);
@@ -99,7 +94,6 @@ function cargarActualizarCalificacion(id, usuario, tipo, referencia, puntuacion,
     modal.show();
 }
 
-// ===== ACTUALIZAR (PUT) =====
 function actualizarCalificacion(id) {
     const usuario = $("#calificacionUsuario").val();
     const tipo = $("#calificacionTipo").val();
@@ -127,7 +121,6 @@ function actualizarCalificacion(id) {
     });
 }
 
-// ===== ELIMINAR (DELETE) =====
 function eliminarCalificacion(id) {
     if (!confirm("¿Seguro que desea eliminar esta calificacion?")) {
         return;
@@ -147,7 +140,6 @@ function eliminarCalificacion(id) {
     });
 }
 
-// ===== UTILIDADES =====
 function limpiarFormularioCalificacion() {
     $("#formCalificacion")[0].reset();
     $("#calificacionId").val("");

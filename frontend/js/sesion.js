@@ -14,7 +14,6 @@ $(document).ready(function () {
     });
 });
 
-// ===== LISTAR (GET) =====
 function consultarSesiones() {
     $.ajax({
         url: config.apiSesion,
@@ -30,18 +29,15 @@ function consultarSesiones() {
     });
 }
 
-// ===== DIBUJAR TABLA =====
 function dibujarTablaSesion(sesiones) {
     const tabla = $("#tablaSesion");
     tabla.html("");
 
     sesiones.forEach(function (sesionElemento) {
-        // La fecha llega como ISO desde Mongo, la dejamos en formato yyyy-mm-dd
         const fechaTexto = formatearFechaSesion(sesionElemento.fecha);
         const notasTexto = sesionElemento.notas ? sesionElemento.notas : "";
         const recomendacionesTexto = sesionElemento.recomendaciones ? sesionElemento.recomendaciones : "";
 
-        // Escapamos comillas dobles para que no rompan el onclick
         const notasEscapadas = notasTexto.replace(/"/g, "&quot;");
         const recomendacionesEscapadas = recomendacionesTexto.replace(/"/g, "&quot;");
 
@@ -63,7 +59,6 @@ function dibujarTablaSesion(sesiones) {
     });
 }
 
-// ===== CREAR (POST) =====
 function crearSesion() {
     const cliente = $("#sesionCliente").val();
     const terapeuta = $("#sesionTerapeuta").val();
@@ -92,7 +87,6 @@ function crearSesion() {
     });
 }
 
-// ===== CARGAR DATOS PARA EDITAR =====
 function cargarActualizarSesion(id, cliente, terapeuta, fecha, hora, notas, recomendaciones) {
     $("#tituloModalSesion").text("Editar Sesion");
     $("#sesionId").val(id);
@@ -107,7 +101,6 @@ function cargarActualizarSesion(id, cliente, terapeuta, fecha, hora, notas, reco
     modal.show();
 }
 
-// ===== ACTUALIZAR (PUT) =====
 function actualizarSesion(id) {
     const cliente = $("#sesionCliente").val();
     const terapeuta = $("#sesionTerapeuta").val();
@@ -136,7 +129,6 @@ function actualizarSesion(id) {
     });
 }
 
-// ===== ELIMINAR (DELETE) =====
 function eliminarSesion(id) {
     if (!confirm("¿Seguro que desea eliminar esta sesion?")) {
         return;
@@ -156,12 +148,10 @@ function eliminarSesion(id) {
     });
 }
 
-// ===== UTILIDADES =====
 function formatearFechaSesion(fecha) {
     if (!fecha) {
         return "";
     }
-    // Mongo devuelve "2026-08-05T00:00:00.000Z", nos quedamos con la parte de la fecha
     return fecha.substring(0, 10);
 }
 

@@ -20,7 +20,6 @@ $(document).ready(function () {
     });
 });
 
-// ---------- LEER / LISTAR ----------
 function cargarTerapeutas() {
     $('#tablaTerapeuta tbody').html(
         '<tr class="fila-vacia"><td colspan="5">Cargando terapeutas...</td></tr>'
@@ -75,7 +74,6 @@ function renderizarTablaTerapeuta(terapeutas) {
     });
 }
 
-// ---------- CREAR ----------
 function crearTerapeuta() {
     const nuevoTerapeuta = {
         nombre: $('#crearNombre').val().trim(),
@@ -110,7 +108,6 @@ function crearTerapeuta() {
         });
 }
 
-// ---------- ABRIR MODAL EDITAR ----------
 function abrirEditarTerapeuta(id) {
     $.ajax({
         url: `${config.apiTerapeuta}/${id}`,
@@ -131,7 +128,6 @@ function abrirEditarTerapeuta(id) {
         });
 }
 
-// ---------- ACTUALIZAR ----------
 function actualizarTerapeuta() {
     const id = $('#editarId').val();
 
@@ -168,7 +164,6 @@ function actualizarTerapeuta() {
         });
 }
 
-// ---------- ELIMINAR ----------
 let idAEliminarTerapeuta = null;
 
 function abrirConfirmarEliminarTerapeuta(id, nombre) {
@@ -201,7 +196,6 @@ function eliminarTerapeuta() {
         });
 }
 
-// ---------- Utilidades (con sufijo Terapeuta para no chocar con otros módulos) ----------
 function textoATexto_lista(texto) {
     if (!texto) return [];
     return texto.split(',')

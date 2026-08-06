@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const Producto = require('../models/Producto');
 
-// GET - listar todos
 router.get('/', async (req, res) => {
     try {
         const productos = await Producto.find();
@@ -15,7 +14,6 @@ router.get('/', async (req, res) => {
     }
 });
 
-// GET - buscar por id
 router.get('/:id', async (req, res) => {
     try {
         const producto = await Producto.findById(req.params.id);
@@ -28,7 +26,6 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-// POST - crear
 router.post('/', async (req, res) => {
     try {
         const nuevoProducto = new Producto(req.body);
@@ -46,7 +43,6 @@ router.post('/', async (req, res) => {
     }
 });
 
-// PUT - actualizar
 router.put('/:id', async (req, res) => {
     try {
         const productoActualizado = await Producto.findByIdAndUpdate(
@@ -67,7 +63,6 @@ router.put('/:id', async (req, res) => {
     }
 });
 
-// DELETE - eliminar
 router.delete('/:id', async (req, res) => {
     try {
         await Producto.findByIdAndDelete(req.params.id);

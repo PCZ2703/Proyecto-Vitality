@@ -14,7 +14,6 @@ $(document).ready(function () {
     });
 });
 
-// ===== LISTAR (GET) =====
 function consultarSoporteTickets() {
     $.ajax({
         url: config.apiSoporteTicket,
@@ -30,7 +29,6 @@ function consultarSoporteTickets() {
     });
 }
 
-// ===== DIBUJAR TABLA =====
 function dibujarTablaSoporteTicket(tickets) {
     const tabla = $("#tablaSoporteTicket");
     tabla.html("");
@@ -38,7 +36,6 @@ function dibujarTablaSoporteTicket(tickets) {
     tickets.forEach(function (ticketElemento) {
         const respuestaTexto = ticketElemento.respuesta ? ticketElemento.respuesta : "";
 
-        // Escapamos comillas dobles para que no rompan el onclick
         const asuntoEscapado = ticketElemento.asunto.replace(/"/g, "&quot;");
         const mensajeEscapado = ticketElemento.mensaje.replace(/"/g, "&quot;");
         const respuestaEscapada = respuestaTexto.replace(/"/g, "&quot;");
@@ -60,7 +57,6 @@ function dibujarTablaSoporteTicket(tickets) {
     });
 }
 
-// ===== CREAR (POST) =====
 function crearSoporteTicket() {
     const usuario = $("#soporteTicketUsuario").val();
     const asunto = $("#soporteTicketAsunto").val();
@@ -88,7 +84,6 @@ function crearSoporteTicket() {
     });
 }
 
-// ===== CARGAR DATOS PARA EDITAR =====
 function cargarActualizarSoporteTicket(id, usuario, asunto, mensaje, estado, respuesta) {
     $("#tituloModalSoporteTicket").text("Editar Ticket");
     $("#soporteTicketId").val(id);
@@ -102,7 +97,6 @@ function cargarActualizarSoporteTicket(id, usuario, asunto, mensaje, estado, res
     modal.show();
 }
 
-// ===== ACTUALIZAR (PUT) =====
 function actualizarSoporteTicket(id) {
     const usuario = $("#soporteTicketUsuario").val();
     const asunto = $("#soporteTicketAsunto").val();
@@ -130,7 +124,6 @@ function actualizarSoporteTicket(id) {
     });
 }
 
-// ===== ELIMINAR (DELETE) =====
 function eliminarSoporteTicket(id) {
     if (!confirm("¿Seguro que desea eliminar este ticket?")) {
         return;
@@ -150,7 +143,6 @@ function eliminarSoporteTicket(id) {
     });
 }
 
-// ===== UTILIDADES =====
 function obtenerColorEstadoTicket(estado) {
     if (estado === "Abierto") {
         return "bg-danger";

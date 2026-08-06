@@ -20,7 +20,6 @@ $(document).ready(function () {
     });
 });
 
-// ---------- LEER / LISTAR ----------
 function cargarUsuarios() {
     $('#tablaUsuario tbody').html(
         '<tr class="fila-vacia"><td colspan="5">Cargando usuarios...</td></tr>'
@@ -75,7 +74,6 @@ function renderizarTablaUsuario(usuarios) {
     });
 }
 
-// ---------- CREAR ----------
 function crearUsuario() {
     const nuevoUsuario = {
         nombre: $('#crearNombre').val().trim(),
@@ -105,7 +103,6 @@ function crearUsuario() {
         });
 }
 
-// ---------- ABRIR MODAL EDITAR ----------
 function abrirEditarUsuario(id) {
     $.ajax({
         url: `${config.apiUsuario}/${id}`,
@@ -116,7 +113,7 @@ function abrirEditarUsuario(id) {
             $('#editarId').val(u._id);
             $('#editarNombre').val(u.nombre);
             $('#editarCorreo').val(u.correo);
-            $('#editarContrasena').val(''); // nunca se precarga la contraseña
+            $('#editarContrasena').val('');
             $('#editarRol').val(u.rol);
 
             $('#modalEditarUsuario').modal('show');
@@ -126,7 +123,6 @@ function abrirEditarUsuario(id) {
         });
 }
 
-// ---------- ACTUALIZAR ----------
 function actualizarUsuario() {
     const id = $('#editarId').val();
 
@@ -136,7 +132,6 @@ function actualizarUsuario() {
         rol: $('#editarRol').val()
     };
 
-    // Solo se envía la contraseña si el usuario escribió una nueva
     const nuevaContrasena = $('#editarContrasena').val();
     if (nuevaContrasena) {
         usuarioActualizado.contrasena = nuevaContrasena;
@@ -163,7 +158,6 @@ function actualizarUsuario() {
         });
 }
 
-// ---------- ELIMINAR ----------
 let idAEliminarUsuario = null;
 
 function abrirConfirmarEliminarUsuario(id, nombre) {
@@ -196,7 +190,6 @@ function eliminarUsuario() {
         });
 }
 
-// ---------- Utilidades (con sufijo Usuario para no chocar con otros módulos) ----------
 function obtenerBadgeRol(rol) {
     const clases = {
         'Cliente': 'badge-activa',
