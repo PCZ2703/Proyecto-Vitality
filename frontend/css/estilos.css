@@ -45,6 +45,16 @@ h1, h2, h3, h4, h5, h6,
     border-radius: 0.75rem; /* rounded-3 */
 }
 
+/* ---------- Tarjetas de modulo en el index ---------- */
+.card-modulo {
+    transition: transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.card-modulo:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0.5rem 1rem rgba(44, 62, 45, 0.15) !important;
+}
+
 .panel-modulo .titulo-modulo {
     color: var(--verde-principal);
 }
