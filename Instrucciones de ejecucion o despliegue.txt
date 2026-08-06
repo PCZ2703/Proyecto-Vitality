@@ -1,0 +1,75 @@
+INSTRUCCIONES DE EJECUCIÓN O DESPLIEGUE
+Proyecto: Vitalia Connect
+
+===========================================
+1. REQUISITOS PREVIOS
+===========================================
+- Node.js instalado (v18 o superior recomendado)
+- Una base de datos MongoDB disponible (local o en la nube, ej. MongoDB Atlas)
+
+===========================================
+2. ESTRUCTURA DEL PROYECTO
+===========================================
+- backend/   -> API REST con Node.js, Express y Mongoose
+- frontend/  -> Sitio estático (HTML, CSS y JS con jQuery/Bootstrap)
+
+===========================================
+3. CONFIGURACIÓN DEL BACKEND
+===========================================
+1) Entrar a la carpeta backend:
+   cd backend
+
+2) Instalar las dependencias:
+   npm install
+
+3) Crear/completar el archivo .env dentro de backend/ con las siguientes
+   variables (ya existe un .env de ejemplo, ajustar valores según el entorno):
+
+   MONGO_URI=<cadena de conexión de MongoDB>
+   PORT=<puerto donde correrá el servidor, ej. 5000>
+
+4) Iniciar el servidor:
+   - Modo normal:
+     npm start
+
+   - Modo desarrollo (reinicio automático con nodemon):
+     npm run dev
+
+5) Verificar que el servidor esté corriendo:
+   En la consola debería aparecer:
+   "Mongo conectado"
+   "Servidor API: http://localhost:<PORT>/api/productos"
+
+===========================================
+4. CONFIGURACIÓN DEL FRONTEND
+===========================================
+El frontend es estático (no requiere instalación ni build).
+
+1) Abrir frontend/js/config.js y confirmar que la constante API_BASE
+   apunte a la URL donde corre el backend, por ejemplo:
+   const API_BASE = "http://localhost:5000/api";
+
+2) Abrir frontend/index.html directamente en el navegador,
+   o servirlo con un servidor estático simple, por ejemplo:
+   - Extensión "Live Server" de VS Code, o
+   - npx serve frontend
+
+===========================================
+5. ORDEN DE ARRANQUE RECOMENDADO
+===========================================
+1) Levantar la base de datos MongoDB (si es local).
+2) Levantar el backend (npm start / npm run dev en backend/).
+3) Abrir frontend/index.html en el navegador.
+
+===========================================
+6. DESPLIEGUE (PRODUCCIÓN)
+===========================================
+- Backend: desplegar en un servicio de hosting para Node.js (Render,
+  Railway, etc.), configurando las variables de entorno MONGO_URI y PORT
+  desde el panel del proveedor.
+- Base de datos: usar MongoDB Atlas (u otro servicio administrado) y
+  actualizar MONGO_URI con la cadena de conexión correspondiente.
+- Frontend: puede desplegarse en cualquier hosting de archivos estáticos
+  (Netlify, Vercel, GitHub Pages, etc.). Actualizar API_BASE en
+  frontend/js/config.js para que apunte a la URL pública del backend
+  desplegado.
