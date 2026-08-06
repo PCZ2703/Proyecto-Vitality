@@ -1,11 +1,3 @@
-/* ==========================================================================
-   Vitalia Connect — Módulo Usuario
-   CRUD completo contra config.apiUsuario usando jQuery AJAX.
-   La contraseña nunca se muestra en la tabla (se enmascara), y en el
-   modal de editar queda vacía: si el campo se deja vacío al actualizar,
-   no se envía (se conserva la contraseña anterior).
-   ========================================================================== */
-
 $(document).ready(function () {
     cargarUsuarios();
 

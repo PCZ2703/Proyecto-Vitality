@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terapeutas · Vitalia Connect</title>
+    <title>Suscripciones · Vitalia Connect</title>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,7 +11,7 @@
 
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
+    <!-- Bootstrap Icons (para los íconos de los botones) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
     <!-- Estilos propios del equipo -->
@@ -29,12 +29,12 @@
             <div class="collapse navbar-collapse" id="navbarVitalia">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="suscripcion.html">Suscripciones</a>
+                        <a class="nav-link active" href="suscripcion.html">Suscripciones</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="terapeuta.html">Terapeutas</a>
+                        <a class="nav-link" href="terapeuta.html">Terapeutas</a>
                     </li>
-                    <li class="nav-item">
+                   <li class="nav-item">
                         <a class="nav-link" href="usuario.html">Usuarios</a>
                     </li>
                     <li class="nav-item dropdown">
@@ -66,22 +66,23 @@
         <div class="panel-modulo shadow-sm p-4">
             <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
                 <div>
-                    <h2 class="titulo-modulo mb-0">Terapeutas</h2>
-                    <p class="text-muted mb-0">Especialistas disponibles para sesiones de acompañamiento.</p>
+                    <h2 class="titulo-modulo mb-0">Suscripciones</h2>
+                    <p class="text-muted mb-0">Gestión de planes y ciclos de facturación de los clientes.</p>
                 </div>
-                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalCrearTerapeuta">
-                    <i class="bi bi-plus-circle"></i> Crear nuevo
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalCrearSuscripcion">
+                    <i class="bi bi-plus-circle"></i> Crear nueva
                 </button>
             </div>
 
             <div class="table-responsive">
-                <table class="table table-hover align-middle table-vitalia" id="tablaTerapeuta">
+                <table class="table table-hover align-middle table-vitalia" id="tablaSuscripcion">
                     <thead>
                         <tr>
-                            <th>Nombre</th>
-                            <th>Especialidad</th>
-                            <th>Certificaciones</th>
-                            <th>Disponibilidad horaria</th>
+                            <th>Usuario</th>
+                            <th>Plan</th>
+                            <th>Ciclo de facturación</th>
+                            <th>Estado</th>
+                            <th>Historial</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -93,77 +94,93 @@
         </div>
     </main>
 
-    <!-- ===== Modal: Crear Terapeuta ===== -->
-    <div class="modal fade" id="modalCrearTerapeuta" tabindex="-1" aria-hidden="true">
+    <!-- ===== Modal: Crear Suscripción ===== -->
+    <div class="modal fade" id="modalCrearSuscripcion" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content rounded-3">
-                <form id="formCrearTerapeuta">
+                <form id="formCrearSuscripcion">
                     <div class="modal-header">
-                        <h5 class="modal-title">Nuevo terapeuta</h5>
+                        <h5 class="modal-title">Nueva suscripción</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                     </div>
                     <div class="modal-body">
                         <div class="mb-3">
-                            <label for="crearNombre" class="form-label">Nombre</label>
-                            <input type="text" class="form-control" id="crearNombre" placeholder="Ej: María Fernández" required>
+                            <label for="crearUsuario" class="form-label">Usuario</label>
+                            <input type="text" class="form-control" id="crearUsuario" placeholder="ID o correo del usuario" required>
                         </div>
                         <div class="mb-3">
-                            <label for="crearEspecialidad" class="form-label">Especialidad</label>
-                            <input type="text" class="form-control" id="crearEspecialidad" placeholder="Ej: Naturopatía, Aromaterapia" required>
+                            <label for="crearPlan" class="form-label">Plan</label>
+                            <input type="text" class="form-control" id="crearPlan" placeholder="Ej: Plan Premium" required>
                         </div>
                         <div class="mb-3">
-                            <label for="crearCertificaciones" class="form-label">Certificaciones</label>
-                            <input type="text" class="form-control" id="crearCertificaciones" placeholder="Separadas por coma. Ej: Fitoterapia, Reiki nivel 2" required>
-                            <div class="form-text">Escribí varias separadas por coma.</div>
+                            <label for="crearCicloFacturacion" class="form-label">Ciclo de facturación</label>
+                            <select class="form-select" id="crearCicloFacturacion" required>
+                                <option value="" selected disabled>Seleccioná un ciclo</option>
+                                <option value="Mensual">Mensual</option>
+                                <option value="Trimestral">Trimestral</option>
+                                <option value="Semestral">Semestral</option>
+                                <option value="Anual">Anual</option>
+                            </select>
                         </div>
                         <div class="mb-3">
-                            <label for="crearDisponibilidad" class="form-label">Disponibilidad horaria</label>
-                            <input type="text" class="form-control" id="crearDisponibilidad" placeholder="Ej: Lunes 8am-12pm, Miércoles 2pm-6pm" required>
-                            <div class="form-text">Escribí varios bloques separados por coma.</div>
+                            <label for="crearEstado" class="form-label">Estado</label>
+                            <select class="form-select" id="crearEstado" required>
+                                <option value="Activa" selected>Activa</option>
+                                <option value="Pausada">Pausada</option>
+                                <option value="Cancelada">Cancelada</option>
+                            </select>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-success" id="btnGuardarCrearTerapeuta">Guardar</button>
+                        <button type="submit" class="btn btn-success" id="btnGuardarCrearSuscripcion">Guardar</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 
-    <!-- ===== Modal: Editar Terapeuta ===== -->
-    <div class="modal fade" id="modalEditarTerapeuta" tabindex="-1" aria-hidden="true">
+    <!-- ===== Modal: Editar Suscripción ===== -->
+    <div class="modal fade" id="modalEditarSuscripcion" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content rounded-3">
-                <form id="formEditarTerapeuta">
+                <form id="formEditarSuscripcion">
                     <div class="modal-header">
-                        <h5 class="modal-title">Editar terapeuta</h5>
+                        <h5 class="modal-title">Editar suscripción</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                     </div>
                     <div class="modal-body">
                         <input type="hidden" id="editarId">
                         <div class="mb-3">
-                            <label for="editarNombre" class="form-label">Nombre</label>
-                            <input type="text" class="form-control" id="editarNombre" required>
+                            <label for="editarUsuario" class="form-label">Usuario</label>
+                            <input type="text" class="form-control" id="editarUsuario" required>
                         </div>
                         <div class="mb-3">
-                            <label for="editarEspecialidad" class="form-label">Especialidad</label>
-                            <input type="text" class="form-control" id="editarEspecialidad" required>
+                            <label for="editarPlan" class="form-label">Plan</label>
+                            <input type="text" class="form-control" id="editarPlan" required>
                         </div>
                         <div class="mb-3">
-                            <label for="editarCertificaciones" class="form-label">Certificaciones</label>
-                            <input type="text" class="form-control" id="editarCertificaciones" required>
-                            <div class="form-text">Separadas por coma.</div>
+                            <label for="editarCicloFacturacion" class="form-label">Ciclo de facturación</label>
+                            <select class="form-select" id="editarCicloFacturacion" required>
+                                <option value="Mensual">Mensual</option>
+                                <option value="Trimestral">Trimestral</option>
+                                <option value="Semestral">Semestral</option>
+                                <option value="Anual">Anual</option>
+                            </select>
                         </div>
                         <div class="mb-3">
-                            <label for="editarDisponibilidad" class="form-label">Disponibilidad horaria</label>
-                            <input type="text" class="form-control" id="editarDisponibilidad" required>
-                            <div class="form-text">Separada por coma.</div>
+                            <label for="editarEstado" class="form-label">Estado</label>
+                            <select class="form-select" id="editarEstado" required>
+                                <option value="Activa">Activa</option>
+                                <option value="Pausada">Pausada</option>
+                                <option value="Cancelada">Cancelada</option>
+                            </select>
+                            <div class="form-text">Si cambiás el estado, se agrega automáticamente al historial.</div>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-success" id="btnGuardarEditarTerapeuta">Actualizar</button>
+                        <button type="submit" class="btn btn-success" id="btnGuardarEditarSuscripcion">Actualizar</button>
                     </div>
                 </form>
             </div>
@@ -171,19 +188,19 @@
     </div>
 
     <!-- ===== Modal: Confirmar eliminación ===== -->
-    <div class="modal fade" id="modalConfirmarEliminarTerapeuta" tabindex="-1" aria-hidden="true">
+    <div class="modal fade" id="modalConfirmarEliminarSuscripcion" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content rounded-3">
                 <div class="modal-header">
-                    <h5 class="modal-title">Eliminar terapeuta</h5>
+                    <h5 class="modal-title">Eliminar suscripción</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
                 <div class="modal-body">
-                    <p>¿Seguro que querés eliminar a <strong id="nombreTerapeutaAEliminar"></strong>? Esta acción no se puede deshacer.</p>
+                    <p>¿Seguro que querés eliminar la suscripción de <strong id="nombreSuscripcionAEliminar"></strong>? Esta acción no se puede deshacer.</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-danger" id="btnConfirmarEliminarTerapeuta">Eliminar</button>
+                    <button type="button" class="btn btn-danger" id="btnConfirmarEliminarSuscripcion">Eliminar</button>
                 </div>
             </div>
         </div>
@@ -193,6 +210,6 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../js/config.js"></script>
-    <script src="../js/modelos/terapeuta.js"></script>
+    <script src="../js/modelos/suscripcion.js"></script>
 </body>
 </html>
